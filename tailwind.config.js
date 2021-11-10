@@ -10,7 +10,13 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: {
+          800: 'var(--primary-800)',
+        },
+      }
+    },
   },
   variants: {
     extend: {},

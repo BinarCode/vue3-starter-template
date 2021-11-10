@@ -7,6 +7,8 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@zhuowenli/vue-feather-icons": "^5.0.2",
+    "lodash-es": "^4.17.21",
     "vue": "^3.2.16",
     "vue-i18n": "^9.2.0-beta.17",
     "vue-router": "^4.0.12",
@@ -15,10 +17,13 @@
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.5",
     "@types/node": "^16.11.7",
     "@vitejs/plugin-vue": "^1.9.3",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.3.11",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
