@@ -6,6 +6,11 @@ declare module '@vue/runtime-core' {
     $refs: {
       [key: string]: HTMLElement|any,
     },
+    $success: (Notification),
+    $error: (Notification),
+    $info: (Notification),
+    $notify: (Notification),
+    copyToClipboard: (string),
   }
 }
 
