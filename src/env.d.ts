@@ -4,13 +4,20 @@ import { DefineComponent } from 'vue'
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
     $refs: {
-      [key: string]: HTMLElement|any,
+      [key: string]: HTMLElement | any,
     },
-    $success: (Notification),
-    $error: (Notification),
-    $info: (Notification),
-    $notify: (Notification),
-    copyToClipboard: (string),
+
+    $success(notification: Notification | string): void,
+
+    $error(notification: Notification | string): void,
+
+    $info(notification: Notification | string): void,
+
+    $notify(notification: Notification | string): void,
+
+    $copyToClipboard(value: string, message?: string): void,
+
+    $formatDate(date: Date | string, format: string): void,
   }
 }
 

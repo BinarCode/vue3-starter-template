@@ -26,6 +26,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     }
   },
+  optimizeDeps: {
+    include: [
+      'date-fns/locale/en-US',
+    ]
+  },
   build: {
     sourcemap: false,
   }
