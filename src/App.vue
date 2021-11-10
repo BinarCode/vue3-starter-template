@@ -1,7 +1,8 @@
 <template>
-  <div class="bg-gray-50 h-screen w-screen">
-    Content goes here
-  </div>
+  <router-view></router-view>
 </template>
 <script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({})
 </script>

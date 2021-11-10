@@ -16,6 +16,10 @@
     ],
     "types": [
       "vite/client",
+      "vite-plugin-pages/client",
+      "vue-i18n",
+      "vuex-extensions",
+      "vuex-persistedstate",
       "node"
     ],
     "plugins": [
