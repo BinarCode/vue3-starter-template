@@ -11,5 +11,8 @@ export default defineComponent({
   }
 })
 </script>
+<route lang="yaml">
+name: Login
+</route>
 <style>
 </style>
