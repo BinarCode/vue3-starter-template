@@ -10,9 +10,11 @@ However, if you wish to get actual prop types in `.vue` imports (for example to 
 manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off`
 from VSCode command palette.
 
-##   
-
 ## VSCode Setup
 
 - [VSCode](https://code.visualstudio.com/)
   + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+
+## Project structure
+
+The project is structured 

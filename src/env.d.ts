@@ -12,6 +12,8 @@ declare module '@vue/runtime-core' {
     $error(notification: Notification | string): void,
 
     $info(notification: Notification | string): void,
+    
+    $warning(notification: Notification | string): void,
 
     $notify(notification: Notification | string): void,
 

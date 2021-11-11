@@ -3,7 +3,7 @@ import Notifications from './Notifications.vue';
 
 export enum NotificationType {
   Success = 'success',
-  Error = 'danger',
+  Error = 'error',
   Info = 'info',
   Warning = 'warning',
 }
@@ -73,7 +73,7 @@ function addNotification(notification: Notification | string) {
   store.state.push(notification);
 }
 
-function notify(notification: Notification) {
+function _notify(notification: Notification) {
   if (Array.isArray(notification)) {
     notification.forEach(notificationInstance => {
       addNotification(notificationInstance);
@@ -83,39 +83,39 @@ function notify(notification: Notification) {
   }
 }
 
+function parseNotification(notification: Notification | string): Notification {
+  if (typeof notification === 'string') {
+    return {
+      message: notification
+    };
+  }
+  return notification;
+}
+
 let methods: any = {
-  notify,
+  notify: _notify,
   error(notification: Notification | string) {
-    if (notification !== 'object') {
-      notification = {
-        message: notification,
-      }
-    }
-    notify({
+    _notify({
       type: NotificationType.Error,
-      ...notification as Notification,
+      ...parseNotification(notification),
     })
   },
   warning(notification: Notification | string) {
-    if (notification !== 'object') {
-      notification = {
-        message: notification,
-      }
-    }
-    notify({
+    _notify({
       type: NotificationType.Warning,
-      ...notification as Notification,
+      ...parseNotification(notification),
+    })
+  },
+  info(notification: Notification | string) {
+    _notify({
+      type: NotificationType.Info,
+      ...parseNotification(notification),
     })
   },
   success(notification: Notification | string) {
-    if (notification !== 'object') {
-      notification = {
-        message: notification,
-      }
-    }
-    notify({
+    _notify({
       type: NotificationType.Success,
-      ...notification as Notification,
+      ...parseNotification(notification),
     })
   }
 }
@@ -137,7 +137,9 @@ const NotificationsPlugin = {
 
 export const error = methods.error
 export const success = methods.success
-export const info = methods.info
 export const warning = methods.warning
+export const info = methods.info
+export const notify = methods.notify
+export const notifications = store
 
 export default NotificationsPlugin;

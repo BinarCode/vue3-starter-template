@@ -14,3 +14,5 @@ createApp(App)
   .use(globalPlugins)
   .use(globalComponents)
   .mount('#app')
+
+import './modules/common/apiConfig'

@@ -3,13 +3,13 @@
        :class="[{'alert-with-icon': icon}, verticalAlign, horizontalAlign, alertType]"
        :style="customPosition">
     <transition
-        appear
-        appear-active-class="transform ease-out duration-300 transition"
-        appear-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
-        appear-to-class="translate-y-0 opacity-100 sm:translate-x-0"
-        leave-active-class="transition ease-in duration-100"
-        leave-class="opacity-100"
-        leave-to-class="opacity-0">
+      appear
+      appear-active-class="transform ease-out duration-300 transition"
+      appear-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+      appear-to-class="translate-y-0 opacity-100 sm:translate-x-0"
+      leave-active-class="transition ease-in duration-100"
+      leave-class="opacity-100"
+      leave-to-class="opacity-0">
       <div v-show="showNotification"
            class="max-w-sm bg-white dark:bg-gray-900 shadow-lg rounded-lg pointer-events-auto">
         <div class="rounded-lg shadow-xs overflow-hidden"
@@ -19,18 +19,22 @@
               <div class="h-6 w-6 flex justify-center items-center rounded-full"
                    :class="{
                     'bg-green-200': type === 'success',
-                    'bg-red-200': type === 'danger',
-                    'bg-orange-200': type === 'warning',
+                    'bg-blue-200': type === 'info',
+                    'bg-red-200': type === 'error',
+                    'bg-yellow-200': type === 'warning',
                  }"
               >
                 <svg class="h-4 w-4"
                      :class="{
                     'text-green-600': type === 'success',
-                    'text-red-600': type === 'danger',
-                    'text-orange-600': type === 'warning',
+                    'text-blue-600': type === 'info',
+                    'text-red-600': type === 'error',
+                    'text-yellow-600': type === 'warning',
                  }"
                      stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                  <path v-if="type === 'danger' || type === 'warning'" stroke-linecap="round" stroke-linejoin="round"
+                  <path v-if="type === 'error' || type === 'warning'"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
                         stroke-width="2"
                         d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                   <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -89,8 +93,7 @@ export default {
       validator: value => {
         let acceptedValues = [
           'info',
-          'primary',
-          'danger',
+          'error',
           'warning',
           'success'
         ];
@@ -140,9 +143,9 @@ export default {
       let alertHeight = this.elmHeight + 10;
       let sameAlertsCount = this.$notifications.state.filter(alert => {
         return (
-            alert.horizontalAlign === this.horizontalAlign &&
-            alert.verticalAlign === this.verticalAlign &&
-            alert.timestamp <= this.timestamp
+          alert.horizontalAlign === this.horizontalAlign &&
+          alert.verticalAlign === this.verticalAlign &&
+          alert.timestamp <= this.timestamp
         );
       }).length;
       if (this.$notifications.settings.overlap) {
