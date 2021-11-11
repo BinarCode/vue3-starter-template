@@ -17,4 +17,23 @@ from VSCode command palette.
 
 ## Project structure
 
-The project is structured 
+The project is structured with modules, inspired by [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design)
+A module represents a directory containing all the code for a specific feature including pages, feature specific components, store and other things.
+An example of a module is the `auth` module which can host everything related to authentication such as login, register, reset, forgot password etc.
+
+## Project specific tools & libraries
+- [Vite](https://vitejs.dev/) Is used as a dev server & build tool.
+- [Vue Router](https://router.vuejs.org/) Is used for routing.
+- [Vite Plugin Routes](https://github.com/hannoeru/vite-plugin-pages) is used to automatically generate routes.
+- [Vuex](https://vuex.vuejs.org/) is used for state management. Modules are automatically loaded in `src/store.ts`.
+In order for a vuex module to be loaded it must be placed inside `modules` and end with `Module.ts`. See `authModule.ts` as an example.
+- [Vue I18n](https://vue-i18n.intlify.dev/introduction.html) is used for translations.
+- [Axios](https://github.com/axios/axios) is used for making requests. There are some interceptors already defined in `src/modules/common/apiConfig.ts`
+- [TailwindCSS](https://tailwindcss.com/) is used for styling. You can extend the config in `tailwind.config.js`.
+- **Base** components. All components starting with **Base** will be automatically imported and therefore there's no need to reimport them in each component.
+You can check how it's done in `src/plugins/globalComponents.ts`
+- You can find several plugins and utilities inside `src/plugins` folder.
+  - `this.$copyToClipboard(message)` can be used to copy to clipboard
+  - `this.$formatDate(date, format)` can be used to format dates
+  - `this.$success(message)` or `this.$error(message)` can be used to trigger notifications across the app both in components and code.
+

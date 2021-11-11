@@ -12,9 +12,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          800: 'var(--primary-800)',
-        },
+        
       }
     },
   },
