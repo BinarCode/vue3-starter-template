@@ -21,17 +21,19 @@ export type NotificationSettings = {
 export type Notification = {
   message: string | Notification,
   timestamp?: number | Date,
-  verticalAlign?: string ,
+  verticalAlign?: string,
   horizontalAlign?: string,
   type?: NotificationType,
   timeout?: number,
   closeOnClick?: boolean,
   showClose?: boolean,
+  onClick?: Function,
 }
 
-type NotificationStoreType = {
+export type NotificationStoreType = {
   state: Notification[],
   settings: NotificationSettings,
+  removeNotification: Function,
 }
 
 const NotificationStore = {

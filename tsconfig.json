@@ -9,6 +9,8 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "incremental": false,
     "baseUrl": "./",
     "lib": [
       "esnext",
@@ -42,6 +44,7 @@
     "src/**/*.vue"
   ],
   "exclude": [
+    "dist",
     "node_modules"
   ]
 }

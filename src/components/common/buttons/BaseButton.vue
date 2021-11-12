@@ -1,46 +1,47 @@
 <template>
-    <span :class="{
-             'block w-full': block,
-             'inline-flex': !block,
-             'shadow-sm': !variant.includes('link'),
-             [customClass]: customClass
-          }"
-          class="relative"
-    >
-        <button v-bind="$attrs"
-                :type="$attrs.type || 'button'"
-                :disabled="disabled || loading"
-                ref="button"
-                class="base-button items-center justify-center border border-transparent font-medium focus:outline-none focus:ring-gray-600 focus:border-gray-600 transition ease-in-out duration-150"
-                :class="{
-                  'text-white bg-primary-800 hover:bg-primary-800 focus:border-primary-800 active:bg-primary-800': variant === 'primary',
+  <div :class="{
+         'block w-full': block,
+         'inline-flex': !block,
+         'shadow-sm': !variant.includes('link'),
+         [customClass]: customClass
+        }"
+       class="relative"
+  >
+    <button v-bind="$attrs"
+            :type="type"
+            :disabled="disabled || loading"
+            ref="button"
+            class="base-button items-center justify-center border border-transparent rounded-md shadow-sm font-medium focus:outline-none focus:ring-gray-600 focus:border-gray-600 transition ease-in-out duration-150"
+            :class="{
+                  'text-white bg-blue-600 hover:bg-blue-700': variant === 'primary',
                   'text-xs px-2.5 py-1.5 leading-4': size === 'xs',
                   'text-sm px-4 py-2 leading-4': size === 'sm',
-                  'text-sm px-6 py-3 leading-5': size === 'md',
+                  'text-sm px-5 py-2 leading-5': size === 'md',
                   'text-base px-6 py-4 leading-6': size === 'lg',
                   'text-base px-8 py-4 leading-6': size === 'xl',
                   'opacity-50 cursor-not-allowed': disabled || loading,
                   'inline-flex': !block,
                   'w-full flex justify-center': block,
                 }"
-        >
-        <div v-if="loading"
-             class="absolute flex w-full items-center justify-center">
+    >
+        <span v-if="loading"
+              class="absolute flex w-full items-center justify-center">
             <LoadingIcon :size="size"/>
-        </div>
+        </span>
 
-        <div class="flex flex-wrap items-center"
-             :class="{'opacity-0': loading}"
-        >
+      <span class="flex flex-wrap items-center"
+            :class="{'opacity-0': loading}"
+      >
             <slot></slot>
-        </div>
+        </span>
     </button>
-    </span>
+  </div>
 </template>
 <script lang="ts">
-
 import LoadingIcon from "@/components/common/buttons/LoadingIcon.vue";
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+
+type ButtonType = "button" | "submit" | "reset" | undefined
 
 export default defineComponent({
   inheritAttrs: false,
@@ -63,6 +64,10 @@ export default defineComponent({
     variant: {
       type: String,
       default: 'primary'
+    },
+    type: {
+      type: String as PropType<ButtonType>,
+      default: 'button',
     },
     size: {
       type: String,

@@ -42,7 +42,8 @@
                 </svg>
               </div>
               <div class="ml-3 w-0 flex-1 pt-0.5">
-                <div v-if="message" v-html="message"
+                <div v-if="message"
+                     v-html="message"
                      class="text-sm leading-5 font-medium text-gray-900 dark:text-white">
                 </div>
               </div>
@@ -64,17 +65,20 @@
     </transition>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { NotificationType } from './index'
+import { defineComponent, PropType } from "vue";
+
+export default defineComponent({
   name: 'Notification',
   props: {
-    message: String,
+    message: [String, Object],
     title: String,
     icon: String,
     verticalAlign: {
       type: String,
       default: 'top',
-      validator: value => {
+      validator: (value: string) => {
         let acceptedValues = ['top', 'bottom'];
         return acceptedValues.indexOf(value) !== -1;
       }
@@ -82,33 +86,24 @@ export default {
     horizontalAlign: {
       type: String,
       default: 'right',
-      validator: value => {
+      validator: (value: string) => {
         let acceptedValues = ['left', 'center', 'right'];
         return acceptedValues.indexOf(value) !== -1;
       }
     },
     type: {
-      type: String,
+      type: String as PropType<NotificationType>,
       default: 'info',
-      validator: value => {
-        let acceptedValues = [
-          'info',
-          'error',
-          'warning',
-          'success'
-        ];
-        return acceptedValues.indexOf(value) !== -1;
-      }
     },
     timeout: {
       type: Number,
       default: 5000,
-      validator: value => {
+      validator: (value: number) => {
         return value >= 0;
       }
     },
     timestamp: {
-      type: Date,
+      type: [Date, Number],
       default: () => new Date()
     },
     component: {
@@ -145,14 +140,14 @@ export default {
         return (
           alert.horizontalAlign === this.horizontalAlign &&
           alert.verticalAlign === this.verticalAlign &&
-          alert.timestamp <= this.timestamp
+          alert.timestamp && alert.timestamp <= this.timestamp
         );
       }).length;
       if (this.$notifications.settings.overlap) {
         sameAlertsCount = 1;
       }
       let pixels = (sameAlertsCount - 1) * alertHeight + initialMargin;
-      let styles = {};
+      let styles: any = {};
       if (this.verticalAlign === 'top') {
         styles.top = `${pixels}px`;
       } else {
@@ -169,7 +164,7 @@ export default {
         this.$emit('close', this.timestamp);
       }, 500)
     },
-    tryClose(evt) {
+    tryClose(evt: Event) {
       if (this.clickHandler) {
         this.clickHandler(evt, this);
       }
@@ -184,7 +179,7 @@ export default {
       setTimeout(this.close, this.timeout);
     }
   }
-};
+});
 </script>
 <style lang="scss">
 .notifications .notification-item {

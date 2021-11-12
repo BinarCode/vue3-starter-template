@@ -3,19 +3,21 @@
     <transition-group :name="transitionName"
                       :mode="transitionMode">
       <notification
-          v-for="notification in notifications"
-          v-bind="notification"
-          :clickHandler="notification.onClick"
-          :key="notification.timestamp.getTime()"
-          @close="removeNotification">
+        v-for="notification in notifications"
+        v-bind="notification"
+        :clickHandler="notification.onClick"
+        :key="notificationKey(notification)"
+        @close="removeNotification">
       </notification>
     </transition-group>
   </div>
 </template>
-<script>
+<script lang="ts">
+import { Notification as NotificationType } from './index'
 import Notification from './Notification.vue';
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: {
     Notification
   },
@@ -39,7 +41,13 @@ export default {
     };
   },
   methods: {
-    removeNotification(timestamp) {
+    notificationKey(notification: NotificationType) {
+      if (notification.timestamp && notification.timestamp instanceof Date) {
+        return notification.timestamp.getTime()
+      }
+      return Math.random()
+    },
+    removeNotification(timestamp: number) {
       this.$notifications.removeNotification(timestamp);
     }
   },
@@ -49,11 +57,11 @@ export default {
     }
   },
   watch: {
-    overlap(newVal) {
+    overlap(newVal: boolean) {
       this.$notifications.settings.overlap = newVal;
     }
   }
-};
+});
 </script>
 <style lang="scss">
 .notifications {
