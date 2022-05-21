@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
+import Components from 'unplugin-vue-components/vite'
 // @ts-ignore
 import path from 'path'
 
@@ -8,6 +9,9 @@ import path from 'path'
 export default defineConfig({
   plugins: [
     vue(),
+    Components({
+      dts: true,
+    }),
     Pages({
       pagesDir: [
         {

@@ -32,28 +32,23 @@
 
       {{ $t('Sign In') }}
     </BaseButton>
-    
+
   </BaseForm>
 
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import {reactive} from "vue";
+import {error} from "@/components/common/NotificationPlugin";
 
-export default defineComponent({
-  data() {
-    return {
-      model: {
-        email: '',
-        password: '',
-      }
-    }
-  },
-  methods: {
-    onSubmit() {
-      this.$error(this.$t('Login not implemented yet'))
-    }
-  }
+
+const model = reactive({
+  email: "",
+  password: "",
 })
+
+function onSubmit() {
+  error('Login not implemented yet')
+}
 </script>
 <route lang="yaml">
 name: Login
