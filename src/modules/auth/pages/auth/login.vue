@@ -8,6 +8,7 @@
     @submit="onSubmit"
   >
     <FormKit
+      v-model="model.email"
       type="email"
       :label="$t('Email')"
       :placeholder="$t('Enter your email')"
@@ -15,6 +16,7 @@
     />
 
     <FormKit
+      v-model="model.password"
       type="password"
       :label="$t('Password')"
       :placeholder="$t('Enter your password')"
