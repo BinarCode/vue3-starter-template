@@ -1,0 +1,26 @@
+:root {
+  --fk-max-width-input: 100%;
+}
+
+@layer components {
+  .form-input-error {
+    @apply border border-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500;
+  }
+  .form-label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+}
+
+.formkit-label {
+  @apply form-label;
+}
+
+
+[data-invalid] .formkit-inner {
+  box-shadow: none;
+  @apply form-input-error;
+  
+  .formkit-input {
+    @apply placeholder-red-300 text-red-900; 
+  }
+}

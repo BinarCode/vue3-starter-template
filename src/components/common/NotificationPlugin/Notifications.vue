@@ -3,19 +3,19 @@
     <transition-group :name="transitionName"
                       :mode="transitionMode">
       <notification
-        v-for="notification in notifications"
+        v-for="(notification, index) in notifications"
         v-bind="notification"
         :clickHandler="notification.onClick"
-        :key="notificationKey(notification)"
+        :key="notificationKey(notification, index)"
         @close="removeNotification">
       </notification>
     </transition-group>
   </div>
 </template>
 <script lang="ts">
-import { Notification as NotificationType } from './index'
+import {Notification as NotificationType} from './index'
 import Notification from './Notification.vue';
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 
 export default defineComponent({
   components: {
@@ -41,11 +41,11 @@ export default defineComponent({
     };
   },
   methods: {
-    notificationKey(notification: NotificationType) {
+    notificationKey(notification: NotificationType, index: number) {
       if (notification.timestamp && notification.timestamp instanceof Date) {
         return notification.timestamp.getTime()
       }
-      return Math.random()
+      return index
     },
     removeNotification(timestamp: number) {
       this.$notifications.removeNotification(timestamp);

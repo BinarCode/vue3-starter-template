@@ -1,7 +1,10 @@
 <template>
   <div class="notification-item"
+       role="status"
+       aria-live="polite"
        :class="[{'alert-with-icon': icon}, verticalAlign, horizontalAlign, alertType]"
-       :style="customPosition">
+       :style="customPosition"
+  >
     <transition
       appear
       appear-active-class="transform ease-out duration-300 transition"

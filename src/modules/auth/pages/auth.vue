@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen min-w-screen flex justify-center items-center">
-    <div class="max-w-xl w-full">
+    <div class="max-w-lg w-full">
       <router-view></router-view>
     </div>
   </div>

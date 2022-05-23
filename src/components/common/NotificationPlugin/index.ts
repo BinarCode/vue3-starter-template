@@ -1,4 +1,4 @@
-import { App, reactive } from 'vue'
+import {App, createApp, reactive} from 'vue'
 import Notifications from './Notifications.vue';
 
 export enum NotificationType {
@@ -65,7 +65,7 @@ function removeNotification(timestamp: number) {
 
 function addNotification(notification: Notification | string) {
   if (typeof notification === 'string') {
-    notification = { message: notification };
+    notification = {message: notification};
   }
   notification.timestamp = new Date();
   notification.timestamp.setMilliseconds(
@@ -129,13 +129,25 @@ const NotificationsPlugin = {
       Vue.config.globalProperties[`$${method}`] = methods[method]
     })
     Vue.config.globalProperties.$notifications = store
-
-    Vue.component('Notifications', Notifications);
+    
     if (options) {
       setOptions(options);
     }
+
+    mountNotificationsPlugin()
   }
 };
+
+function mountNotificationsPlugin() {
+  const node = document.createElement('section')
+  node.classList.add('notifications-group')
+
+  document.firstElementChild?.insertBefore(node, document.body)
+  const notificationsApp = createApp(Notifications)
+  notificationsApp.config.globalProperties.$notifications = store
+  
+  notificationsApp.mount(node)
+}
 
 export const error = methods.error
 export const success = methods.success
