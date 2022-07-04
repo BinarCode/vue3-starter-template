@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "@antfu"
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "vue/no-deprecated-slot-attribute": "off",
+    "vue/no-reserved-component-names": "off",
+    "vue/component-tags-order": "off"
+  }
+}

@@ -1,68 +1,71 @@
 <template>
   <div class="notifications">
-    <transition-group :name="transitionName"
-                      :mode="transitionMode">
-      <notification
+    <transition-group
+      :name="transitionName"
+      :mode="transitionMode"
+    >
+      <Notification
         v-for="(notification, index) in notifications"
         v-bind="notification"
-        :clickHandler="notification.onClick"
         :key="notificationKey(notification, index)"
-        @close="removeNotification">
-      </notification>
+        :click-handler="notification.onClick"
+        @close="removeNotification"
+      />
     </transition-group>
   </div>
 </template>
+
 <script lang="ts">
-import {Notification as NotificationType} from './index'
-import Notification from './Notification.vue';
-import {defineComponent} from "vue";
+import { defineComponent } from 'vue'
+import Notification from './Notification.vue'
+import { Notification as NotificationType } from './index'
 
 export default defineComponent({
   components: {
-    Notification
+    Notification,
   },
   props: {
     transitionName: {
       type: String,
-      default: 'list'
+      default: 'list',
     },
     transitionMode: {
       type: String,
-      default: 'in-out'
+      default: 'in-out',
     },
     overlap: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      notifications: this.$notifications?.state || []
-    };
-  },
-  methods: {
-    notificationKey(notification: NotificationType, index: number) {
-      if (notification.timestamp && notification.timestamp instanceof Date) {
-        return notification.timestamp.getTime()
-      }
-      return index
-    },
-    removeNotification(timestamp: number) {
-      this.$notifications.removeNotification(timestamp);
-    }
-  },
-  created() {
-    if (this.$notifications) {
-      this.$notifications.settings.overlap = this.overlap;
+      notifications: this.$notifications?.state || [],
     }
   },
   watch: {
     overlap(newVal: boolean) {
-      this.$notifications.settings.overlap = newVal;
-    }
-  }
-});
+      this.$notifications.settings.overlap = newVal
+    },
+  },
+  created() {
+    if (this.$notifications)
+      this.$notifications.settings.overlap = this.overlap
+  },
+  methods: {
+    notificationKey(notification: NotificationType, index: number) {
+      if (notification.timestamp && notification.timestamp instanceof Date)
+        return notification.timestamp.getTime()
+
+      return index
+    },
+    removeNotification(timestamp: number) {
+      this.$notifications.removeNotification(timestamp)
+    },
+  },
+})
 </script>
+
 <style lang="scss">
 .notifications {
   .list-move {

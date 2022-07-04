@@ -11,7 +11,7 @@ module.exports = {
       // Notice: It won't actually do it. You need to use `require.context` or `Vue.component`
       globalComponents: [
         './src/components/**/(Base|Icon)*.(vue|js)',
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 }

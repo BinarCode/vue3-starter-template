@@ -1,4 +1,4 @@
-import { App } from "vue";
+import { App } from 'vue'
 import { createI18n } from 'vue-i18n'
 import en from './locales/en.json'
 
@@ -19,5 +19,5 @@ export default {
     app.config.globalProperties.$t = i18n.global.t
     app.config.globalProperties.$i18n = i18n
   },
-  t: i18n.global.t
+  t: i18n.global.t,
 }

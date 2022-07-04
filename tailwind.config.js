@@ -3,13 +3,13 @@ module.exports = {
   content: [
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
-    './safelist.txt'
+    './safelist.txt',
   ],
   theme: {
     extend: {
       colors: {
-        
-      }
+
+      },
     },
   },
   variants: {
@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require("@tailwindcss/forms")({
+    require('@tailwindcss/forms')({
       strategy: 'class', // only generate classes
     }),
   ],

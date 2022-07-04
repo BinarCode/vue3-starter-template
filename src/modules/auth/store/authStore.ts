@@ -8,7 +8,7 @@ export const useAuthStore = defineStore('auth', {
   },
   actions: {
     setLoggedIn(isLoggedIn: boolean) {
-      this.isLoggedIn = isLoggedIn;
+      this.isLoggedIn = isLoggedIn
     },
   },
 })

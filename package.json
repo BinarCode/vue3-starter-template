@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "typecheck": "vue-tsc --noEmit --skipLibCheck",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@formkit/themes": "^1.0.0-beta.8",
@@ -23,19 +24,23 @@
     "vue-router": "^4.0.15"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.25.2",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/typography": "^0.5.2",
     "@types/lodash-es": "^4.17.5",
     "@types/node": "^16.11.7",
     "@vitejs/plugin-vue": "^1.10.2",
     "autoprefixer": "^10.4.7",
+    "eslint": "^8.19.0",
+    "eslint-plugin-vue": "^9.1.1",
     "postcss": "^8.4.14",
     "sass": "^1.52.1",
     "sass-loader": "^12.6.0",
-    "tailwindcss": "^3.0.24",
+    "tailwindcss": "^3.1.4",
     "typescript": "^4.4.3",
     "unplugin-vue-components": "^0.19.5",
     "vite": "^2.6.4",
+    "vite-plugin-eslint": "^1.6.1",
     "vite-plugin-pages": "^0.18.2",
     "vue-tsc": "^0.3.0"
   },

@@ -11,26 +11,25 @@ export function isInternalServerError(status: number): boolean {
 }
 
 export function mapErrors(data: any): string {
-  let errors = '';
+  let errors = ''
 
-  if (!data.errors && data.message || data.messages) {
+  if ((!data.errors && data.message) || data.messages)
     return data.message || data.messages[0]
-  }
+
   if (Array.isArray(data.errors)) {
     const hasStringErrors = typeof data.errors[0] === 'string'
 
-    if (hasStringErrors) {
+    if (hasStringErrors)
       return data.errors[0]
-    }
 
     data.errors = data.errors[0]
   }
-  for (let err in data.errors) {
-    let errorRow = data.errors[err].join('</br>');
-    if (!errorRow.endsWith('</br>')) {
-      errorRow += '</br>';
-    }
-    errors += errorRow;
+  for (const err in data.errors) {
+    let errorRow = data.errors[err].join('</br>')
+    if (!errorRow.endsWith('</br>'))
+      errorRow += '</br>'
+
+    errors += errorRow
   }
-  return errors;
+  return errors
 }

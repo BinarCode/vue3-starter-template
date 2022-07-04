@@ -1,5 +1,5 @@
-import {App, createApp, reactive} from 'vue'
-import Notifications from './Notifications.vue';
+import { App, createApp, reactive } from 'vue'
+import Notifications from './Notifications.vue'
 
 export enum NotificationType {
   Success = 'success',
@@ -8,32 +8,32 @@ export enum NotificationType {
   Warning = 'warning',
 }
 
-export type NotificationSettings = {
-  overlap: boolean,
-  verticalAlign: string,
-  horizontalAlign: string,
-  type: NotificationType,
-  timeout: number,
-  closeOnClick: boolean,
-  showClose: boolean,
+export interface NotificationSettings {
+  overlap: boolean
+  verticalAlign: string
+  horizontalAlign: string
+  type: NotificationType
+  timeout: number
+  closeOnClick: boolean
+  showClose: boolean
 }
 
-export type Notification = {
-  message: string | Notification,
-  timestamp?: number | Date,
-  verticalAlign?: string,
-  horizontalAlign?: string,
-  type?: NotificationType,
-  timeout?: number,
-  closeOnClick?: boolean,
-  showClose?: boolean,
-  onClick?: Function,
+export interface Notification {
+  message: string | Notification
+  timestamp?: number | Date
+  verticalAlign?: string
+  horizontalAlign?: string
+  type?: NotificationType
+  timeout?: number
+  closeOnClick?: boolean
+  showClose?: boolean
+  onClick?: Function
 }
 
-export type NotificationStoreType = {
-  state: Notification[],
-  settings: NotificationSettings,
-  removeNotification: Function,
+export interface NotificationStoreType {
+  state: Notification[]
+  settings: NotificationSettings
+  removeNotification: Function
 }
 
 const NotificationStore = {
@@ -45,56 +45,56 @@ const NotificationStore = {
     type: NotificationType.Info,
     timeout: 5000,
     closeOnClick: true,
-    showClose: true
+    showClose: true,
   },
-  removeNotification
-} as NotificationStoreType;
+  removeNotification,
+} as NotificationStoreType
 
 const store = reactive(NotificationStore)
 
 function setOptions(options: NotificationSettings) {
-  store.settings = Object.assign(store.settings, options);
+  store.settings = Object.assign(store.settings, options)
 }
 
 function removeNotification(timestamp: number) {
-  const indexToDelete = store.state.findIndex(n => n?.timestamp === timestamp);
-  if (indexToDelete !== -1) {
-    store.state.splice(indexToDelete, 1);
-  }
+  const indexToDelete = store.state.findIndex(n => n?.timestamp === timestamp)
+  if (indexToDelete !== -1)
+    store.state.splice(indexToDelete, 1)
 }
 
 function addNotification(notification: Notification | string) {
-  if (typeof notification === 'string') {
-    notification = {message: notification};
-  }
-  notification.timestamp = new Date();
+  if (typeof notification === 'string')
+    notification = { message: notification }
+
+  notification.timestamp = new Date()
   notification.timestamp.setMilliseconds(
-    notification.timestamp.getMilliseconds() + store.state.length
-  );
-  notification = Object.assign({}, store.settings, notification);
-  store.state.push(notification);
+    notification.timestamp.getMilliseconds() + store.state.length,
+  )
+  notification = Object.assign({}, store.settings, notification)
+  store.state.push(notification)
 }
 
 function _notify(notification: Notification) {
   if (Array.isArray(notification)) {
-    notification.forEach(notificationInstance => {
-      addNotification(notificationInstance);
-    });
-  } else {
-    addNotification(notification);
+    notification.forEach((notificationInstance) => {
+      addNotification(notificationInstance)
+    })
+  }
+  else {
+    addNotification(notification)
   }
 }
 
 function parseNotification(notification: Notification | string): Notification {
   if (typeof notification === 'string') {
     return {
-      message: notification
-    };
+      message: notification,
+    }
   }
-  return notification;
+  return notification
 }
 
-let methods: any = {
+const methods: any = {
   notify: _notify,
   error(notification: Notification | string) {
     _notify({
@@ -119,24 +119,22 @@ let methods: any = {
       type: NotificationType.Success,
       ...parseNotification(notification),
     })
-  }
+  },
 }
-
 
 const NotificationsPlugin = {
   install(Vue: App, options: NotificationSettings) {
-    Object.keys(methods).forEach(method => {
+    Object.keys(methods).forEach((method) => {
       Vue.config.globalProperties[`$${method}`] = methods[method]
     })
     Vue.config.globalProperties.$notifications = store
-    
-    if (options) {
-      setOptions(options);
-    }
+
+    if (options)
+      setOptions(options)
 
     mountNotificationsPlugin()
-  }
-};
+  },
+}
 
 function mountNotificationsPlugin() {
   const node = document.createElement('section')
@@ -145,7 +143,7 @@ function mountNotificationsPlugin() {
   document.firstElementChild?.insertBefore(node, document.body)
   const notificationsApp = createApp(Notifications)
   notificationsApp.config.globalProperties.$notifications = store
-  
+
   notificationsApp.mount(node)
 }
 
@@ -156,4 +154,4 @@ export const info = methods.info
 export const notify = methods.notify
 export const notifications = store
 
-export default NotificationsPlugin;
+export default NotificationsPlugin

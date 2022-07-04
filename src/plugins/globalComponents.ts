@@ -1,5 +1,5 @@
 import { camelCase, upperFirst } from 'lodash-es'
-import { App } from "vue";
+import { App } from 'vue'
 
 const components = import.meta.globEager('../components/**/(Base|Icon)*.(vue|js)')
 
@@ -8,14 +8,13 @@ const components = import.meta.globEager('../components/**/(Base|Icon)*.(vue|js)
  */
 export default {
   install(Vue: App) {
-
-    for (let filePath in components) {
-      // @ts-ignore
+    for (const filePath in components) {
+      // @ts-expect-error
       const componentPath = filePath
         .split('/')
         .pop()
-        .replace(/\.\w+$/, '') 
-      
+        .replace(/\.\w+$/, '')
+
       const componentName = upperFirst(camelCase(componentPath))
       const componentConfig = components[filePath]
       // Register component globally
@@ -24,9 +23,9 @@ export default {
         // Look for the component options on `.default`, which will
         // exist if the component was exported with `export default`,
         // otherwise fall back to module's root.
-        componentConfig.default || componentConfig
+        componentConfig.default || componentConfig,
       )
     }
-  }
+  },
 }
 

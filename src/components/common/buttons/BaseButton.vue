@@ -17,44 +17,49 @@
       'w-full flex justify-center': block,
     }"
   >
-      <span v-if="loading"
-            class="absolute flex w-full items-center justify-center">
-          <LoadingIcon :size="size"/>
-      </span>
+    <span
+      v-if="loading"
+      class="absolute flex w-full items-center justify-center"
+    >
+      <LoadingIcon :size="size" />
+    </span>
 
-    <span class="flex flex-wrap items-center"
-          :class="{'opacity-0': loading}">
-      <slot></slot>
+    <span
+      class="flex flex-wrap items-center"
+      :class="{ 'opacity-0': loading }"
+    >
+      <slot />
     </span>
   </button>
 </template>
-<script lang="ts">
-import LoadingIcon from "@/components/common/buttons/LoadingIcon.vue";
-import {defineComponent, PropType} from "vue";
 
-type ButtonType = "button" | "submit" | "reset" | undefined
+<script lang="ts">
+import { PropType, defineComponent } from 'vue'
+import LoadingIcon from '@/components/common/buttons/LoadingIcon.vue'
+
+type ButtonType = 'button' | 'submit' | 'reset' | undefined
 
 export default defineComponent({
-  inheritAttrs: false,
   components: {
     LoadingIcon,
   },
+  inheritAttrs: false,
   props: {
     block: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     variant: {
       type: String,
-      default: 'primary'
+      default: 'primary',
     },
     type: {
       type: String as PropType<ButtonType>,
@@ -62,16 +67,17 @@ export default defineComponent({
     },
     size: {
       type: String,
-      default: 'md' // xs|sm|md|lg|xl
+      default: 'md', // xs|sm|md|lg|xl
     },
   },
   methods: {
     focus() {
       this.$refs.button?.focus()
-    }
+    },
   },
 })
 </script>
+
 <style lang="scss" scoped>
 .base-button {
   &:focus {
