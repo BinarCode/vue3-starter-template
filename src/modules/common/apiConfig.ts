@@ -11,13 +11,15 @@ axios.defaults.baseURL = API_URL
 export function requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig {
   const token = localStorage.getItem(TOKEN_KEY)
 
-  if (!config.headers)
+  if (!config.headers) {
     config.headers = {}
+  }
 
   config.headers.Accept = 'application/vnd.api+json'
 
-  if (!config.headers.Authorization && token)
+  if (!config.headers.Authorization && token) {
     config.headers.Authorization = `Bearer ${token}`
+  }
 
   return config
 }
@@ -36,16 +38,18 @@ interface CustomAxiosError extends AxiosError {
 
 export async function errorInterceptor(error: CustomAxiosError) {
   // Happens for cancelled requests using axios CancelTokenSource
-  if (!error.response)
+  if (!error.response) {
     return Promise.reject(error)
+  }
 
   const { status } = error.response
   let errors = ''
 
   if (statusCodesToHandle.includes(status)) {
     errors = mapErrors(error.response.data)
-    if (errors === 'Unauthenticated.')
+    if (errors === 'Unauthenticated.') {
       errors = 'Your session expired. Please login in again to use the application'
+    }
 
     if (notifications.state.length === 0) {
       notify({

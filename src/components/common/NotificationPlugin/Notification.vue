@@ -165,23 +165,26 @@ export default defineComponent({
           && alert.timestamp && alert.timestamp <= this.timestamp
         )
       }).length
-      if (this.$notifications.settings.overlap)
+      if (this.$notifications.settings.overlap) {
         sameAlertsCount = 1
+      }
 
       const pixels = (sameAlertsCount - 1) * alertHeight + initialMargin
       const styles: any = {}
-      if (this.verticalAlign === 'top')
+      if (this.verticalAlign === 'top') {
         styles.top = `${pixels}px`
-      else
+      } else {
         styles.bottom = `${pixels}px`
+      }
 
       return styles
     },
   },
   mounted() {
     this.elmHeight = this.$el.clientHeight
-    if (this.timeout)
+    if (this.timeout) {
       setTimeout(this.close, this.timeout)
+    }
   },
   methods: {
     close() {
@@ -192,11 +195,13 @@ export default defineComponent({
       }, 500)
     },
     tryClose(evt: Event) {
-      if (this.clickHandler)
+      if (this.clickHandler) {
         this.clickHandler(evt, this)
+      }
 
-      if (this.closeOnClick)
+      if (this.closeOnClick) {
         this.close()
+      }
     },
   },
 })

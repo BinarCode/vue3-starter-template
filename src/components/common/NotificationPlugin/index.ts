@@ -58,13 +58,15 @@ function setOptions(options: NotificationSettings) {
 
 function removeNotification(timestamp: number) {
   const indexToDelete = store.state.findIndex(n => n?.timestamp === timestamp)
-  if (indexToDelete !== -1)
+  if (indexToDelete !== -1) {
     store.state.splice(indexToDelete, 1)
+  }
 }
 
 function addNotification(notification: Notification | string) {
-  if (typeof notification === 'string')
+  if (typeof notification === 'string') {
     notification = { message: notification }
+  }
 
   notification.timestamp = new Date()
   notification.timestamp.setMilliseconds(
@@ -79,8 +81,7 @@ function _notify(notification: Notification) {
     notification.forEach((notificationInstance) => {
       addNotification(notificationInstance)
     })
-  }
-  else {
+  } else {
     addNotification(notification)
   }
 }
@@ -129,8 +130,9 @@ const NotificationsPlugin = {
     })
     Vue.config.globalProperties.$notifications = store
 
-    if (options)
+    if (options) {
       setOptions(options)
+    }
 
     mountNotificationsPlugin()
   },

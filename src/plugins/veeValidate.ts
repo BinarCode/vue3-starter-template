@@ -12,8 +12,9 @@ export default {
     })
     Object.keys(AllRules).forEach((rule) => {
       const validationRule = AllRules[rule]
-      if (typeof validationRule === 'function')
+      if (typeof validationRule === 'function') {
         defineRule(rule, validationRule)
+      }
     })
   },
 }

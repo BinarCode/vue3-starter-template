@@ -49,13 +49,15 @@ export default defineComponent({
     },
   },
   created() {
-    if (this.$notifications)
+    if (this.$notifications) {
       this.$notifications.settings.overlap = this.overlap
+    }
   },
   methods: {
     notificationKey(notification: NotificationType, index: number) {
-      if (notification.timestamp && notification.timestamp instanceof Date)
+      if (notification.timestamp && notification.timestamp instanceof Date) {
         return notification.timestamp.getTime()
+      }
 
       return index
     },
