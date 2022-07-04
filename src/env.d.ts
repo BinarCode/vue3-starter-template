@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="vite-plugin-pages/client" />
 import { DefineComponent } from 'vue'
 import { NotificationStoreType } from "@/components/common/NotificationPlugin";
 

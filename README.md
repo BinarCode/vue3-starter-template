@@ -25,8 +25,7 @@ An example of a module is the `auth` module which can host everything related to
 - [Vite](https://vitejs.dev/) Is used as a dev server & build tool.
 - [Vue Router](https://router.vuejs.org/) Is used for routing.
 - [Vite Plugin Routes](https://github.com/hannoeru/vite-plugin-pages) is used to automatically generate routes.
-- [Vuex](https://vuex.vuejs.org/) is used for state management. Modules are automatically loaded in `src/store.ts`.
-In order for a vuex module to be loaded it must be placed inside `modules` and end with `Module.ts`. See `authModule.ts` as an example.
+- [Pinia](https://pinia.vuejs.org/) is used for state management.
 - [Vue I18n](https://vue-i18n.intlify.dev/introduction.html) is used for translations.
 - [Axios](https://github.com/axios/axios) is used for making requests. There are some interceptors already defined in `src/modules/common/apiConfig.ts`
 - [TailwindCSS](https://tailwindcss.com/) is used for styling. You can extend the config in `tailwind.config.js`.

@@ -5,7 +5,6 @@ import App from './App.vue'
 import router from './router/router'
 import i18n from '@/i18n'
 import globalPlugins from '@/plugins/globalPlugins'
-import globalComponents from '@/plugins/globalComponents'
 
 import '@formkit/themes/genesis'
 import '@/assets/css/index.scss'
@@ -16,6 +15,5 @@ createApp(App)
   .use(i18n)
   .use(router)
   .use(globalPlugins)
-  .use(globalComponents)
   .use(formKitPlugin, defaultConfig)
   .mount('#app')
