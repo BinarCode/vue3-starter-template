@@ -3,8 +3,7 @@
     {{ $t('Sign In') }}
   </h2>
 
-  <FormKit
-    type="form"
+  <BaseForm
     :submit-label="$t('Sign In')"
     @submit="onSubmit"
   >
@@ -14,6 +13,7 @@
       :label="$t('Email')"
       :placeholder="$t('Enter your email')"
       validation="required|email"
+      validation-visibility="dirty"
     />
 
     <FormKit
@@ -22,8 +22,13 @@
       :label="$t('Password')"
       :placeholder="$t('Enter your password')"
       validation="required"
+      validation-visibility="dirty"
+      :classes="{
+        outer: 'w-full',
+        input: 'w-full',
+      }"
     />
-  </FormKit>
+  </BaseForm>
 </template>
 
 <script lang="ts" setup>
