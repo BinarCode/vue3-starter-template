@@ -1,3 +1,6 @@
+@import "forms.css";
+@import "transitions.css";
+
 :root {
 
 }
@@ -5,6 +8,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "forms";
-@import "transitions";

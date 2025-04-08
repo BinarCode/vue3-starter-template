@@ -7,7 +7,7 @@ import i18n from '@/i18n'
 import globalPlugins from '@/plugins/globalPlugins'
 
 import '@formkit/themes/genesis'
-import '@/assets/css/index.scss'
+import '@/assets/css/index.css'
 
 import './modules/common/apiConfig'
 createApp(App)

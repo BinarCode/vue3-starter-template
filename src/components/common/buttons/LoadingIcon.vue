@@ -9,20 +9,15 @@
   />
 </template>
 
-<script lang="ts">
-import { LoaderIcon } from '@zhuowenli/vue-feather-icons'
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+// import { LoaderIcon } from '@zhuowenli/vue-feather-icons'
 
-export default defineComponent({
-  components: {
-    LoaderIcon,
-  },
-  props: {
-    size: {
-      type: String,
-      default: 'md',
-    },
-  },
+
+const props = defineProps({
+  size: {
+    type: String,
+    default: 'md',
+  }
 })
 </script>
 
