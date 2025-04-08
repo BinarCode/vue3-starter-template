@@ -6,3 +6,5 @@ temp-dist
 *.local
 .idea
 .env
+typed-router.d.ts
+components.d.ts

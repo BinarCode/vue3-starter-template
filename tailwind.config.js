@@ -1,16 +1,19 @@
 module.exports = {
-  darkMode: 'class',
+  darkMode: ['class', 'class'],
   content: [
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
     './safelist.txt',
   ],
   theme: {
-    extend: {
-      colors: {
-
-      },
-    },
+  	extend: {
+  		colors: {},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
   },
   variants: {
     extend: {},
@@ -20,5 +23,6 @@ module.exports = {
     require('@tailwindcss/forms')({
       strategy: 'class', // only generate classes
     }),
-  ],
+      require("tailwindcss-animate")
+],
 }

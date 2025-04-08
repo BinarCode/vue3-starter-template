@@ -1,17 +1,16 @@
 <template>
   <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-    {{ $t('Sign In') }}
+    {{ t('Sign In') }}
   </h2>
-
   <BaseForm
-    :submit-label="$t('Sign In')"
+    :submit-label="t('Sign In')"
     @submit="onSubmit"
   >
     <FormKit
       v-model="model.email"
       type="email"
-      :label="$t('Email')"
-      :placeholder="$t('Enter your email')"
+      :label="t('Email')"
+      :placeholder="t('Enter your email')"
       validation="required|email"
       validation-visibility="dirty"
     />
@@ -19,8 +18,8 @@
     <FormKit
       v-model="model.password"
       type="password"
-      :label="$t('Password')"
-      :placeholder="$t('Enter your password')"
+      :label="t('Password')"
+      :placeholder="t('Enter your password')"
       validation="required"
       validation-visibility="dirty"
       :classes="{
@@ -32,9 +31,11 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import { error } from '@/components/common/NotificationPlugin'
+import {reactive} from 'vue'
+import {error} from '@/components/common/NotificationPlugin'
+import {useI18n} from "vue-i18n";
 
+const {t} = useI18n()
 const model = reactive({
   email: '',
   password: '',

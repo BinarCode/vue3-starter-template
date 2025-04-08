@@ -12,8 +12,8 @@ import '@/assets/css/index.css'
 import './modules/common/apiConfig'
 createApp(App)
   .use(createPinia())
-  .use(i18n)
   .use(router)
   .use(globalPlugins)
   .use(formKitPlugin, defaultConfig)
+  .use(i18n)
   .mount('#app')

@@ -18,6 +18,7 @@ export default {
   install(app: App) {
     app.config.globalProperties.$t = i18n.global.t
     app.config.globalProperties.$i18n = i18n
+    app.use(i18n)
   },
   t: i18n.global.t,
 }

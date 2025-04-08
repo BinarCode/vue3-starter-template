@@ -34,6 +34,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import { error } from '@/components/common/NotificationPlugin'
+import {Button} from "@/components/ui/button";
 
 const model = reactive({
   email: '',
