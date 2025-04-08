@@ -46,11 +46,5 @@ function onSubmit() {
 }
 </script>
 
-<route lang="yaml">
-name: Login
-meta:
-layout: authLayout
-</route>
-
 <style>
 </style>
